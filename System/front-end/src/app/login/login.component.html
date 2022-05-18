@@ -1,0 +1,57 @@
+<div fxLayoutAlign="center center" fxFlexFill>
+  <div  class="wrapper">
+    <div class="title-text">
+      <div #text class="title login">Ingresar</div>
+      <div class="title signup">Registrarse</div>
+    </div>
+    <div class="form-container">
+      <!-- Botones superiores -->
+  
+      <div class="slide-controls">
+        <input type="radio" name="slide" id="login" checked />
+        <input type="radio" name="slide" id="signup" />
+        <label (click)="onClickIn()" #asLoging for="login" class="slide login">Ingresar</label>
+        <label (click)="onClickUp()" #asUp  for="signup" class="slide signup">Registrarse</label>
+        <div class="slider-tab"></div>
+      </div>
+      <div class="form-inner">
+        <!-- Inicio de primer form -->
+  
+        <form [formGroup]="loginForm" (ngSubmit)="onLogin(loginForm.value)"  #form action="#" class="login">
+          <div class="field">
+            <input type="text" placeholder="Email" formControlName="usuario" required />
+          </div>
+          <div class="field">
+            <input formControlName="password" type="password" placeholder="Contraseña " required />
+          </div>
+          <div class="field btn">
+            <div class="btn-layer"></div>
+            <input  type="submit" value="Enviar" />
+          </div>
+          <div class="signup-link">Sin cuenta? <a (click)="onLink(); " href="#">Registrate</a></div>
+        </form>
+  
+        <!-- Inicio de segunto form -->
+  
+        <form [formGroup]="singUpForm"  (ngSubmit)="onSingup(singUpForm.value)"  action="#" class="signup">
+          <div class="field">
+            <input formControlName="usuario" type="text" placeholder="Email" required />
+          </div>
+          <div class="field">
+            <input formControlName="password" type="password" placeholder="Contraseña" required />
+          </div>
+          <div class="field">
+            <input formControlName="passwordConfimation"  type="password" placeholder="Confirmar Contraseña" required />
+          </div>
+          <div class="field btn">
+            <div class="btn-layer"></div>
+            <input type="submit" value="Signup" />
+          </div>
+        </form>
+  
+        <!-- Fin de form -->
+      </div>
+    </div>
+  </div>
+</div>
+

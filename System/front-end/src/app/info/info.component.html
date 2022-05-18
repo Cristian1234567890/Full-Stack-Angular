@@ -1,0 +1,103 @@
+<div>
+    <div class="navbar">
+        <h1 class="nav-title">Administrador</h1>
+        <button (click)="onLogOut()"  type="submit" class="btn btn-light logout">Logout</button>
+    </div>
+
+    <div  fxFlexFill class="contenedor-principal">
+        <div class="contenedor-data">
+
+             <!-- inicio de formulario -->
+
+            <div class="contenedor0">
+
+                <!-- Activador de servicio -->
+        
+                <div class="contenedor2">
+                    <img src="../../assets/user.svg" alt="">
+                    <button (click)="onServicio()" class="btnServ">Servicio</button>
+                    <button (click)="onRefresh()" class="btnServ btnExit">Nueva consulta</button>
+                </div>
+        
+        
+                <!-- Tabla -->
+        
+                <div class="contenedor2"> 
+                    <table  class="table-1">
+                        <thead>
+                          <tr class="titulo">
+                            <th >N Cliente </th>
+                            <th >Estado</th>
+                            <th >Edad</th>
+                            <th >Genero</th>
+                            <th >Educacion</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td #numero></td>
+                            <td #estatus></td>
+                            <td #edad></td>
+                            <td #genero></td>
+                            <td #educacion></td>
+                          </tr>
+                        </tbody>
+                    </table>
+            
+                    <table class="table2">
+                        <thead>
+                            <tr>
+                                <th>Ingresos</th>
+                                <th>Tipo de targeta</th>
+                                <th>Limite de credito</th>
+                                <th>Relacion en meses</th>
+                                <th>Tiempo inactivo</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                              <td #ingresos></td>
+                              <td #tarjeta></td>
+                              <td #credito></td>
+                              <td #relacion></td>
+                              <td #inactivo></td>
+                            </tr>
+                          </tbody>
+                    </table>
+            
+                </div>
+            </div>
+            
+            
+            
+            <div class="estadistica">
+
+                <table #seccion class="table2">
+                    <thead>
+                        <tr>
+                            <th>Resultado de K-Means</th>
+                            <th></th>
+                        </tr>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <figure #figura class="pie-chart">
+                                        <figcaption>
+                                            Cluster 1 <span style="background-color:#1667bd; color:#1667bd">a</span>
+                                            <br>
+                                            Cluster 0 <span style="background-color:#c01313; color:#c01313">b</span>                                       
+                                        </figcaption>
+                                    </figure>
+                                </td>
+                                <td #cluster>
+                                </td>
+                            </tr>
+                        </tbody>
+                </table>
+
+            </div>
+            
+            <!-- fin de formulario -->
+        </div>
+    </div>
+</div>

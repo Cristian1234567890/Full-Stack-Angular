@@ -1,0 +1,12 @@
+<div>
+  <div class="navbar">
+    <h1 class="nav-title">Administrador</h1>
+    <button (click)="onLogOut()" type="button" class="btn btn-light logout">Logout</button>
+  </div>
+  <div class="field" id="searchform">
+    <form [formGroup]="searchForm">
+      <input formControlName="id" type="text" id="searchterm" placeholder="ID Cliente" />
+      <button (click)="onSearch(searchForm.value)" type="button" id="search">Buscar</button>
+    </form>  
+  </div>
+</div>

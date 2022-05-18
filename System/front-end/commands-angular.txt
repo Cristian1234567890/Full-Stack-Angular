@@ -1,0 +1,55 @@
+ng new front-end
+
+
+(4 any problem)
+npm cache clean --force
+
+Set-ExecutuibPolicy Unrestricted
+Get-ExecutionPolicy
+
+
+(start and stop server)
+ng serve -o
+crtl + c
+
+                  DONE
+-----------------------------------------------------------
+ng add @angular/material
+
+npm i -s @angular/flex-layout @angular/cdk
+
+npm install ngx-cookie-service --save
+{providers: [CookieService], on app.module.ts}
+
+ng add @ng-bootstrap/ng-bootstrap
+
+ng generate component login
+
+ng generate component cliente
+
+ng generate component info
+
+ng g s servicios/api/api
+
+ng generate guard vigilante
+
+ng build
+
+
+( install modules )
+npm  install
+
+npm install bootstrap
+
+(past on angular.json)
+"styles": [
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "src/styles.css"
+            ]
+
+
+# For forms
+import { ReactiveFormsModule,FormsModule } from '@angular/forms';
+
+# for http
+import{HttpClientModule} from '@angular/common/http';

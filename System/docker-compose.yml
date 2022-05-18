@@ -1,0 +1,43 @@
+version: "3.7"
+
+services:
+  db:
+    image: mongo
+    container_name: mongodb
+    restart: always
+    ports:
+      - "127.0.0.1:27018:27017"
+    volumes:
+      - ./db/volumes:/data/db
+
+  micro:
+    container_name: microService
+    restart: always
+    build: ./microServicio
+    ports:
+      - "127.0.0.1:80:80"
+    depends_on:
+      - db
+    links: 
+      - db
+
+  server:
+    container_name: backend
+    restart: always
+    build: ./back-end
+    ports:
+      - "127.0.0.1:2400:2400"
+    depends_on:
+      - micro
+    links: 
+      - micro
+  
+  angular:
+    container_name: frontend
+    build: ./front-end
+    ports:
+      - "127.0.0.1:4200:80"
+    depends_on:
+      - server
+    links:
+      - server 
