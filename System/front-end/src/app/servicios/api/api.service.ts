@@ -19,5 +19,9 @@ export class ApiService {
   {
     return this.http.post(url,body); 
   }
+  
+  public post2(url:string, body:any, headers:HttpHeaders){
+    return this.http.post(url, body, {headers:headers})
+  }
 
 }

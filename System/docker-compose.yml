@@ -31,7 +31,7 @@ services:
       - micro
     links: 
       - micro
-  
+
   angular:
     container_name: frontend
     build: ./front-end

@@ -12,8 +12,9 @@ const tokenSecret = "1234567890";
 
 const middleware = require("../middlewares");
 
-var request = require('request');
+/* var request = require('request'); */
 
+const axios = require('axios').default;
 
 /* to login and get jwt token */
 
@@ -64,19 +65,18 @@ router.post("/signup", (req, res) => {
 
 /* connect to python microservice */
 
-router.post("/servicio", (req, res) => {
-  
-  request.post(
-    'http://localhost:80/evaluate',
-    { json: {CLIENTNUM: req.body.CLIENTNUM} },
-    function (error, response, body) {
-        if (!error && response.statusCode == 200) {
-          res.status(200).json(body);
-        }else{
-          console.log(error);
-        }
-    });
-    
+router.post("/servicio", middleware.verify, (req, res) => {
+  const url = 'http://microService:80/evaluate'
+  const data = {CLIENTNUM: req.body.CLIENTNUM}
+  axios.post(
+    url,
+    data)
+    .then(function (response) {
+      res.status(200).json(response.data);
+    })
+    .catch(function (error) {
+      res.status(400).json(error);
+    }); 
 });
 
 

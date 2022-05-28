@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild, ElementRef, AfterViewInit } from '@angula
 import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 import { ApiService } from '../servicios/api/api.service';
+import {HttpHeaders} from '@angular/common/http';
 
 @Component({
   selector: 'app-info',
@@ -79,15 +80,16 @@ export class InfoComponent implements AfterViewInit{
   
 
   onServicio():void{
-    
+
+    let auth = this.cookies.get('token_access');
+    const token = `Bearer ${auth}`;
+    const header = new HttpHeaders().set("authorization", token);
     const {CLIENTNUM} = this.respuesta
     console.log('Connecting to microService through bc..');
 
-    /* 'http://localhost:2400/api/auth/servicio' */
-    this.RestService.post('http://localhost:80/evaluate', {
-      CLIENTNUM: CLIENTNUM,
-    }).subscribe(
-      (respuesta :any) => {
+    /* 'http://localhost:80/evaluate' */
+    this.RestService.post2('http://localhost:2400/api/auth/servicio', {CLIENTNUM: CLIENTNUM}, header)
+    .subscribe((respuesta :any) => {
         console.log(respuesta);
         
         const fig = this.figura.nativeElement;
@@ -109,5 +111,5 @@ export class InfoComponent implements AfterViewInit{
         console.log('Error: ', error);
       });
   }
-
+  
 }

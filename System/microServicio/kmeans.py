@@ -24,15 +24,13 @@ collection = db['clients']
 
 class modelos:
 
-    def obtenerData(self, objetivo):
-        
-        
+    
+    def obtenerData(self):
         df =  pd.DataFrame(list(collection.find()))
         df =  df.iloc[: , 1:]
         df =  df.drop('Marital_Status', 1)
         
-        ''' df = pd.read_csv("limpia.csv") '''
-
+        
         # tranformacion de data
         
         earning_map = {'$60K - $80K':2, 'Less than $40K':0, '$80K - $120K':3, '$40K - $60K':1,'$120K +':4, 'Unknown':-999}
@@ -47,7 +45,7 @@ class modelos:
         
         df["Card_Category"] = df["Card_Category"].map({'Blue':0, 'Gold':2, 'Silver':1, 'Platinum':3})
         
-    
+
         education_mappping = {
         "Uneducated":0,
         "High School":1,
@@ -63,32 +61,28 @@ class modelos:
         
         datos = df
         
-        ''' Eliminar objetivos e id '''
+        ''' Eliminar objetivos  '''
         
         datos.drop(["Attrition_Flag"], inplace=True, axis=1)
         
-        ''' df.drop(["CLIENTNUM"], inplace=True, axis=1) '''
-    
-        
-        return datos, df
-        
-        
+        return datos
     
     def kmeans(self,a):
         
-        modelo, df = self.obtenerData(a)
+        modelo = self.obtenerData()
         
-        clustering = KMeans(n_clusters = 2, max_iter = 600) #creacion de modelo
-        clustering.fit(modelo)
+        clustering = KMeans(n_clusters = 2, max_iter = 300) #creacion de modelo
+        clustering.fit(modelo.loc[:,['Card_Category','Credit_Limit','Customer_Age',  'Education_Level', 'Gender', 'Income_Category', 'Months_Inactive_12_mon', 'Months_on_book']])
         
+        '''  '''
         modelo['kmeans_clusters'] = clustering.labels_  #Guardar resultados.
         
         result = modelo.query(f"CLIENTNUM == {a}")
-        result = modelo.iat[0,9]
+        result = modelo.loc[0,['kmeans_clusters']]
         
         count=pd.value_counts(modelo['kmeans_clusters']).tolist()
         
+        '''  '''
         return int(result), count
-    
 
 
